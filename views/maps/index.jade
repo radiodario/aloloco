@@ -1,0 +1,40 @@
+!!! 5
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='text/javascript', src='/javascripts/jquery-1.5.2.min.js')
+        script(type='text/javascript', src='/javascripts/jquery-ui.min.js')
+        script(type='text/javascript', src='/javascripts/protovis-r3.2.js')
+        script(type="text/javascript", src="http://maps.google.com/maps/api/js?sensor=false")
+
+        script
+            var wishes = !{JSON.stringify(wishes)};
+
+            setTimeout(function() {
+                    $('.speechbubble').fadeIn('slow').effect('pulsate', {times:1});
+                    }, 4000);
+
+
+        script(type='text/javascript', src='/javascripts/birthdayMap.js')
+        
+    body
+        img(src='/thankyou.png', class='speechbubble', style='display:none')
+        img(src='/manhead48.png', class='logoimg')
+        h1 Birthday Wishes
+        div#map
+        script
+            //add the map
+            var myOptions = {
+                zoom: 2,
+                center: new google.maps.LatLng(25.00, 0.00),
+                mapTypeId: google.maps.MapTypeId.TERRAIN
+            };
+            var map = new google.maps.Map(document.getElementById("map"),
+                myOptions);
+            //add the overlay canvas
+            var overlay = new Canvas(wishes, map);
+
+        div#wishes
+            ul#wishesList
+                != partial('wish', wishes)
