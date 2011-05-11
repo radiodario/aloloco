@@ -1,0 +1,58 @@
+!!! 5
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/ui/jquery-ui-1.8.11.custom.css')
+        script(type='text/javascript', src='/javascripts/jquery-1.5.2.min.js')
+        script(type='text/javascript', src='/javascripts/jquery-ui.min.js')
+        script(type='text/javascript', src='/javascripts/protovis-r3.2.js')
+        script(type='text/javascript', src='/javascripts/countries.js')
+        script(type='text/javascript', src='/javascripts/centroid.js')
+        script
+            var wishes = !{JSON.stringify(wishes)};
+            setTimeout(function() {
+                $('#map').fadeIn('slow');
+                    }, 2000);
+
+            setTimeout(function() {
+                 $('.speechbubble').fadeIn(200).effect('pulsate', {times:1, speed:1000});
+                 }, 4000);
+
+            setTimeout(function() {
+              $('#wishes').animate({
+                top: 400
+            },1000)
+            }, 2000);
+        
+    body
+        #map
+
+            div#container
+                span#play.ui-icon.ui-icon-play(style="float:left")
+                b(id="timeLabel") Time:
+                    span#timeCont
+                div#time
+
+                
+
+            script(type='text/javascript', src='/javascripts/birthdayMap_1.js')
+        img(src='/thankyou.png', class='speechbubble', style='display:none')
+        img(src='/manhead48.png', class='logoimg')
+        h1 Birthday Wishes
+
+
+        div#wishes
+            ul#wishesList
+                != partial('wish', wishes)
+
+
+        script(type="text/javascript")
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-10091458-2']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();

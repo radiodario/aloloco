@@ -1,0 +1,11 @@
+li
+    span.image
+        img(src=wish.user_image)
+    p #{wish.message}
+        br
+        small by  
+              b #{wish.from.name} 
+              small  from #{wish.location.name}
+              br
+              small
+                at #{wish.created_time}
